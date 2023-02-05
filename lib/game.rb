@@ -9,9 +9,15 @@ class Game
 
   def initialize
     @board = Board.new
-    @player1 = Player.new("red", "\e[31m\u25cf\e[0m ")
-    @player2 = Player.new("blue", "\e[34m\u25cf\e[0m ")
+    print "Choose name for the first player: "
+    @player1 = Player.new(choose_name, "\e[31m\u25cf\e[0m ")
+    print "Choose name for the second player: "
+    @player2 = Player.new(choose_name, "\e[34m\u25cf\e[0m ")
     @current_player = player1
+  end
+
+  def choose_name
+    gets.strip.capitalize
   end
 
   def play
@@ -44,7 +50,7 @@ class Game
   end
   
   def select_column
-    puts "Enter number from 1 to 7:"
+    print "Enter number from 1 to 7:  "
     begin
       column = gets.to_i
     end until (1..7).to_a.include?(column)
